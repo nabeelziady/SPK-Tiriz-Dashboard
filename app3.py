@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from pathlib import Path
+import io
 
 # ============================================================
 # DASHBOARD SPK TIRIZ
@@ -270,7 +271,7 @@ uploaded_file = st.sidebar.file_uploader(
 try:
     if uploaded_file is not None:
         movement, usage, purchases, params = load_workbook_data(
-            uploaded_file.getvalue()
+    io.BytesIO(uploaded_file.getvalue())
         )
     else:
         if not DEFAULT_FILE.exists():
